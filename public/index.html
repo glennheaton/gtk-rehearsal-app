@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>GTK Rehearsal Room</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="wrap">
+    <h1>GTK Video Rehearsal Room</h1>
+    <p class="sub">Record a 30–60s rehearsal. Get performance feedback (MVP).</p>
+
+    <form id="registerForm" class="card">
+      <label>Name</label>
+      <input type="text" id="name" required />
+
+      <label>Email</label>
+      <input type="email" id="email" required />
+
+      <label>Profession</label>
+      <select id="role">
+        <option value="">Select…</option>
+        <option>Real Estate Agent</option>
+        <option>Mortgage Broker</option>
+        <option>Professional Services</option>
+        <option>Business Owner</option>
+        <option>Other</option>
+      </select>
+
+      <button type="submit">Start Your Rehearsal</button>
+      <p class="tiny">By continuing, you agree we can email your results.</p>
+    </form>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

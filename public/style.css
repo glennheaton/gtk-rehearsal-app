@@ -1,0 +1,62 @@
+body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial; margin: 0; background: #f6f6f7; }
+.wrap { max-width: 720px; margin: 32px auto; padding: 0 16px; }
+h1 { margin: 0 0 8px; }
+.sub { margin: 0 0 16px; opacity: 0.75; }
+.card { background: white; border-radius: 12px; padding: 16px; box-shadow: 0 2px 10px rgba(0,0,0,0.06); margin: 16px 0; }
+label { display:block; margin-top: 10px; font-size: 14px; opacity: 0.8; }
+input, select { width: 100%; padding: 10px; border-radius: 10px; border: 1px solid #ddd; margin-top: 6px; }
+button, .btn { margin-top: 14px; padding: 10px 14px; border: 0; border-radius: 10px; background: #111; color: #fff; cursor: pointer; display: inline-block; text-decoration: none; }
+.row { display: flex; gap: 10px; margin-top: 12px; }
+video { width: 100%; border-radius: 12px; background: #000; }
+.tiny { font-size: 12px; opacity: 0.7; margin-top: 10px; }
+.pulse {
+  animation: pulse 1.2s ease-in-out infinite;
+}
+
+.actions {
+  margin-top: 20px;
+  text-align: left;
+}
+
+.btn {
+  padding: 12px 22px;
+  font-size: 16px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.btn.secondary {
+  background: #f2f2f2;
+  border: 1px solid #ccc;
+  color: #333;
+}
+
+/* Green "Next take" button */
+button.btn-next {
+  background-color: #2fa84f;
+  color: #ffffff;
+  border: none;
+}
+
+button.btn-next:hover {
+  background-color: #279245;
+}
+
+
+.btn.secondary:hover {
+  background: #e6e6e6;
+}
+
+
+
+@keyframes pulse {
+  0%   { opacity: 0.35; }
+  50%  { opacity: 1; }
+  100% { opacity: 0.35; }
+}
+.take-label {
+  font-size: 18px;       /* larger than body text */
+  font-weight: 600;
+  color: #c62828;        /* calm, confident red */
+  margin: 6px 0 12px 0;  /* spacing above/below */
+}

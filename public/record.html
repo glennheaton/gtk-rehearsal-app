@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Record</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="wrap">
+    <h1>Record your rehearsal</h1>
+    <p class="sub">Tip: look at the camera lens, not yourself on screen.  Ensure you don't have too much 'headroom'.</p>
+
+    <div class="card">
+      <video id="preview" autoplay playsinline muted></video>
+
+      <div class="row">
+        <button id="startBtn" type="button">Start</button>
+        <button id="stopBtn" type="button" disabled>Stop</button>
+      </div>
+
+      <p id="status" class="tiny"></p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
