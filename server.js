@@ -1,5 +1,13 @@
 require("dotenv").config();
 
+console.log("MC env loaded:", {
+  hasKey: !!process.env.MAILCHIMP_API_KEY,
+  hasAudience: !!process.env.MAILCHIMP_AUDIENCE_ID,
+  dc: (process.env.MAILCHIMP_API_KEY || "").split("-")[1] || null,
+  tag: process.env.MAILCHIMP_TAG
+});
+
+
 const express = require("express");
 const crypto = require("crypto");
 
