@@ -12,7 +12,7 @@ const express = require("express");
 const crypto = require("crypto");
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 // --------------------
 // Middleware
@@ -152,6 +152,6 @@ app.get("/", (req, res) => {
 // --------------------
 // Start server
 // --------------------
-app.listen(PORT, () => {
-  console.log(`Server running at http://localhost:${PORT}`);
+app.listen(PORT, "0.0.0.0", () => {
+  console.log(`Server running on port ${PORT}`);
 });
