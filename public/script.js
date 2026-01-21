@@ -6,6 +6,24 @@ function getSessionIdFromUrl() {
   return urlParams.get("sessionId");
 }
 
+// ===========================
+// TAKE TRACKING (per session)
+// ===========================
+function takeKey(sessionId) {
+  return `gtk_take_${sessionId || "unknown"}`;
+}
+
+function getTakeNumber(sessionId) {
+  const n = parseInt(localStorage.getItem(takeKey(sessionId)) || "0", 10);
+  return Number.isFinite(n) ? n : 0;
+}
+
+function setTakeNumber(sessionId, n) {
+  localStorage.setItem(takeKey(sessionId), String(n));
+}
+
+
+
 function getTakeCount() {
   const current = Number(sessionStorage.getItem("takeCount") || 0);
   const next = current + 1;
@@ -76,6 +94,20 @@ const statusEl = document.getElementById("status");
 
 if (startBtn && stopBtn && preview) {
   console.log("Record page detected ✅");
+
+  const sessionId = getSessionIdFromUrl() || "test";
+  const already = getTakeNumber(sessionId);
+
+  if (already >= 3) {
+    if (statusEl) {
+      statusEl.textContent = "You’ve used your 3 free takes. Please book a quick review to keep going.";
+    }
+    // kick them back to results (or landing) so they don't get camera prompt
+    window.location.href = `/results.html?sessionId=${encodeURIComponent(sessionId)}`;
+    return;
+  }
+
+
 
   let mediaRecorder = null;
   let recordedChunks = [];
@@ -169,6 +201,16 @@ if (resultsBox) {
         clearTimeout(watchdog);
 
         const c = data.coaching || {};
+
+        // Take tracking: increment when results are successfully shown
+        const takeNumber = getTakeNumber(sessionId) + 1;
+        setTakeNumber(sessionId, takeNumber);
+
+        // Optional: show take label somewhere (if you want)
+        const takeBadge = `<p class="take-badge">Take ${takeNumber} of 3</p>`;
+
+
+
           // 👇 THIS MUST BE HERE (outside the HTML)
   let takeNote = "";
   if (takeNumber === 1) {
@@ -199,10 +241,19 @@ if (resultsBox) {
     <p><strong>Quick fix:</strong> ${c.quickFix || ""}</p>
     <p><strong>Next take:</strong> ${c.nextTakePrompt || ""}</p>
 
-    <div class="actions">
-      <button id="retryBtn" type="button" class="btn btn-next">Try another rehearsal</button>
-    </div>
-  </div>
+      (takeNumber >= 3
+      ? `<div class="actions" style="margin-top:16px; text-align:left;">
+           <p><strong>Free limit reached:</strong> You’ve used all 3 rehearsal takes.</p>
+           <a class="btn btn-next" href="https://YOUR_BOOKING_LINK_HERE" target="_blank" rel="noopener">
+             Book a quick review
+           </a>
+         </div>`
+      : `<div class="actions" style="margin-top:16px; text-align:left;">
+           <button id="retryBtn" type="button" class="btn btn-next">
+             Try another rehearsal
+           </button>
+         </div>`) +
+
 `;
 
       })

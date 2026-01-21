@@ -60,3 +60,10 @@ button.btn-next:hover {
   color: #c62828;        /* calm, confident red */
   margin: 6px 0 12px 0;  /* spacing above/below */
 }
+
+.take-badge{
+  font-size: 16px;
+  font-weight: 700;
+  margin: 8px 0 12px;
+}
+
